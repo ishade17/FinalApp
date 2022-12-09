@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { Configuration, OpenAIApi } from "openai";
 import  AsyncStorage from '@react-native-async-storage/async-storage';
-
+import "react-native-url-polyfill/auto";
 
 export default function Home() {
 
@@ -26,7 +26,7 @@ export default function Home() {
 
   // -- open ai variables
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY
   });
   const openai = new OpenAIApi(configuration);
 
@@ -52,22 +52,16 @@ export default function Home() {
   // -- pin images --
   const pinImage = async ( image ) => {
 
-    console.log("setting async storage:")
-
     try {
 
       if (images.includes(image) == false) {
 
-        console.log("new item added to images:")
         setImages([...images, image]);
-        console.log(images)
 
         await AsyncStorage.setItem('@FinalApp:images', JSON.stringify([...images, image]));
-        console.log("saved images:")
-        console.log(JSON.stringify(images))
 
       } else {
-        console.log("already included")
+        console.log("photo already pinned")
       }
 
     } catch (error) {

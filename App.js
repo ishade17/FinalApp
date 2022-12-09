@@ -16,8 +16,8 @@ export default function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
-              iconName = 'safari'
+            if (route.name === 'Generate') {
+              iconName = 'industry'
             } else if (route.name === 'Pinned') {
               iconName = 'map-pin'
             }
@@ -29,7 +29,7 @@ export default function App() {
           headerShown: false,
         })}>
 
-        <Tab.Screen name="Home" component={Home}/>
+        <Tab.Screen name="Generate" component={Home}/>
         <Tab.Screen name="Pinned" component={PinnedImagesLibrary}/>
 
 
